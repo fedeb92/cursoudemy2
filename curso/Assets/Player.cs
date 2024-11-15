@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
     private void HandleAnimation()
     {
         anim.SetFloat("xVelocity", rb.linearVelocity.x);
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+        anim.SetBool("isGrounded",isGrounded);
     }
     private void OnDrawGizmos()
     {
