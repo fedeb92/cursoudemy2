@@ -461,8 +461,8 @@ GameObject:
   - component: {fileID: 1534990807}
   - component: {fileID: 1534990806}
   - component: {fileID: 1534990805}
-  m_Layer: 0
-  m_Name: Square
+  m_Layer: 6
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,6 +696,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  jumpForce: 6
+  groundCheckDistance: 0.8
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
