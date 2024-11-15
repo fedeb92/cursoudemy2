@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     [SerializeField] private float moveSpeed;
     private float xInput;
-    public bool isRunning;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,13 +23,17 @@ public class Player : MonoBehaviour
     void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
-        anim.SetBool("isRunning", isRunning);
+        
         HandleMovement();
-
-        isRunning = rb.linearVelocity.x != 0;
+        HandleAnimation();
+        
 
     }
 
+    private void HandleAnimation()
+    {
+        anim.SetFloat("xVelocity", rb.linearVelocity.x);
+    }
     private void HandleMovement()
     {
         rb.linearVelocity = new Vector2(xInput * moveSpeed, rb.linearVelocity.y);
