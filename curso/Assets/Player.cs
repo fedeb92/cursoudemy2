@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 
 
     private float xInput;
+    private bool facingRight;
+    private int facingDir = 1;
     
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
         HandleInput();
         HandleCollision();
         HandleMovement();
+        HandleFlip();
         HandleAnimation();
     }
 
@@ -60,6 +63,24 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(xInput * moveSpeed, rb.linearVelocity.y);
     }
+
+    private void HandleFlip()
+    {
+        if(rb.linearVelocity.x > 0 && facingRight || rb.linearVelocity.x < 0 && !facingRight)        
+                {
+            Flip();
+
+        }
+    }
+
+    private void Flip()
+    {
+        facingDir = facingDir * -1;
+        transform.Rotate(0, 180, 0);
+        facingRight = !facingRight;
+    }
+
+
     private void HandleAnimation()
     {
         anim.SetFloat("xVelocity", rb.linearVelocity.x);
