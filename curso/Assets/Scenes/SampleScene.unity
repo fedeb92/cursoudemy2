@@ -684,7 +684,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -851449745, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -905,8 +905,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.032564163, y: -0.014164805}
-  m_Size: {x: 1.2424636, y: 1.5319891}
+  m_Offset: {x: 0.031016767, y: -0.014164805}
+  m_Size: {x: 1.3074518, y: 1.5319891}
   m_Direction: 0
 --- !u!50 &2056181539
 Rigidbody2D:
@@ -967,7 +967,7 @@ MonoBehaviour:
   jumpForce: 14
   doubleJumpForce: 12
   groundCheckDistance: 0.8
-  wallCheckDistance: 0.66
+  wallCheckDistance: 0.7
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
