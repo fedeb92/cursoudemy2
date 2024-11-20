@@ -14,9 +14,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float doubleJumpForce;
     private bool canDoubleJump;
 
-    [Header("BufferJump")]
+    [Header("BufferJump & CoyoteJump ")]
     [SerializeField] private float bufferJumpWidow = .25f;
-    private float bufferJumpPressed = -1;
+    private float bufferJumpActivated = -1;
+    [SerializeField] private float coyoteJumpWidow = .5f;
+    private float coyoteJumpActivated = -1;
+
 
     [Header("wall interaction")]
     [SerializeField] private float wallJumpDuration = .6f;
@@ -27,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockbackDuration = 1;
     [SerializeField] private Vector2 knockbackPower;
     private bool isKnocked;
-    private bool canBeKnocked;
+    
 
     [Header("collition info")]
     [SerializeField] private float groundCheckDistance;
@@ -112,6 +115,11 @@ public class Player : MonoBehaviour
     private void BecomeAirBorne()
     {
         isAirborne = true;
+        if (rb.linearVelocity.y < 0)
+        {
+            Debug.Log("activated coyote jump");
+            ActivateCoyoteJump();
+        }
     }
 
     private void HandleLanding()
@@ -137,23 +145,39 @@ public class Player : MonoBehaviour
     {
         if (isAirborne)
         {
-            bufferJumpPressed = Time.time;
+            bufferJumpActivated = Time.time;
         }
     }
 
     private void AttempBufferJump()
     {
-        if(Time.time > bufferJumpPressed + bufferJumpWidow)
+        if(Time.time < bufferJumpActivated + bufferJumpWidow)
         {
-            bufferJumpPressed = 0;
+            bufferJumpActivated = Time.time -1;
             Jump();
         }
     }
 
+    private void ActivateCoyoteJump()
+    {
+        coyoteJumpActivated = Time.time;
+    }
+
+    private void CancelCoyoteJump()
+    {
+        coyoteJumpActivated = Time.time -1;
+    }
+
     private void JumpButton()
     {
-        if (isGrounded)
+        bool coyoteJumpAvalible = Time.time < coyoteJumpActivated + coyoteJumpWidow;
+
+        if (isGrounded|| coyoteJumpAvalible)
         {
+            if(coyoteJumpAvalible) 
+            {
+                Debug.Log("use salto coyote");
+            }
             Jump();
         }
         else if(isWallDetected && !isGrounded)
@@ -164,6 +188,8 @@ public class Player : MonoBehaviour
         {
             DoubleJump();
         }
+
+        CancelCoyoteJump();
     }
     private void Jump()
     {
@@ -194,10 +220,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator KnockbackRoutine()
     {
-        canBeKnocked = false;
         isKnocked = true;
         yield return new WaitForSeconds(knockbackDuration);
-        canBeKnocked = true;
         isKnocked = false;
     }
 
