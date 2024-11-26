@@ -2,7 +2,8 @@ using UnityEngine;
 public enum FruitType { Apple, Banana, Cherry ,Kiwi ,Melon ,Orange ,Pineapple ,Strawberry}
 public class Fruit : MonoBehaviour
 {
-    [SerializeField] private FruitType fruitType;    
+    [SerializeField] private FruitType fruitType;
+    [SerializeField] private GameObject pickupVfx;
     
     private GameManager gameManager;
     private Animator anim;
@@ -39,6 +40,8 @@ public class Fruit : MonoBehaviour
         {
             gameManager.AddFruit();
             Destroy(gameObject);
+
+            GameObject newFx = Instantiate(pickupVfx,transform.position,Quaternion.identity);
         }
     }
 
