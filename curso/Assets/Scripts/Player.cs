@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockbackDuration = 1;
     [SerializeField] private Vector2 knockbackPower;
     private bool isKnocked;
-    
+
     [Header("collition")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
@@ -43,7 +43,10 @@ public class Player : MonoBehaviour
     private float yInput;
     private bool facingRight;
     private int facingDir = 1;
-    
+
+    [Header("VFX")]
+    [SerializeField] private GameObject deathVFX;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -86,6 +89,15 @@ public class Player : MonoBehaviour
         anim.SetTrigger("knockback");
         rb.linearVelocity = new Vector2(knockbackPower.x * -facingDir, knockbackPower.y);
     }
+    public void Die()
+    {
+
+        GameObject newDeathVFX = Instantiate(deathVFX,transform.position,Quaternion.identity);
+    Destroy(gameObject);
+    }
+    
+
+    
     private IEnumerator KnockbackRoutine()
     {
         isKnocked = true;
