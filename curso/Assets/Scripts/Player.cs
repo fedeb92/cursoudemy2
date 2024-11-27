@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
     public void Die()
     {
 
-        GameObject newDeathVFX = Instantiate(deathVFX,transform.position,Quaternion.identity);
     Destroy(gameObject);
+        GameObject newDeathVFX = Instantiate(deathVFX,transform.position,Quaternion.identity);
     }
     
 
