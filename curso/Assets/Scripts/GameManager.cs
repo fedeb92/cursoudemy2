@@ -24,11 +24,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void UpdateRespawnPosition(Transform newRespawnPoint) => respawnPoint = newRespawnPoint; 
+
     public void RespawnPlayer() => StartCoroutine(RespawnCorutine());
     
-       
-    
-
     private IEnumerator RespawnCorutine()
     {
         yield return new WaitForSeconds(respawnDelay);
