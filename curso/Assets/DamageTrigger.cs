@@ -9,7 +9,7 @@ public class DamageTrigger : MonoBehaviour
         
             if(player != null)     
             {
-                player.Knockback();
+                player.Knockback(transform.position.x);
             }
         
     }

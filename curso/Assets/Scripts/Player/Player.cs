@@ -66,10 +66,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-           {
-            Knockback();
-        }
+      
 
         UpdateAirbornStatus();
         if(canBeControlled == false)
@@ -102,8 +99,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Knockback()
+    public void Knockback(float sourceDamageXPosition)
     {
+        float knockbackDir = 1;
+
+        if (transform.position.x < sourceDamageXPosition)
+            knockbackDir = -1;
+
         if (isKnocked)
         {
             return;
@@ -111,7 +113,7 @@ public class Player : MonoBehaviour
 
         StartCoroutine(KnockbackRoutine());
         
-        rb.linearVelocity = new Vector2(knockbackPower.x * -facingDir, knockbackPower.y);
+        rb.linearVelocity = new Vector2(knockbackPower.x * knockbackDir, knockbackPower.y);
         
     }
     public void Die()
