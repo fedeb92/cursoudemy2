@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -70,7 +71,12 @@ public class Player : MonoBehaviour
 
         UpdateAirbornStatus();
         if(canBeControlled == false)
-                return;
+        {
+            HandleAnimation();
+            HandleCollision();
+            return;
+        }
+                
         if(isKnocked) {
         return;
         }
@@ -123,8 +129,24 @@ public class Player : MonoBehaviour
         GameObject newDeathVFX = Instantiate(deathVFX,transform.position,Quaternion.identity);
     }
     
+    public void Push(Vector2 direction,float duration =0)
+    {
+        StartCoroutine(PushCouroutine(direction,duration));
+    }
 
-    
+    private IEnumerator PushCouroutine(Vector2 direction,float duration)
+    {
+        canBeControlled = false ;
+
+
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(direction, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(duration);
+
+        canBeControlled = true ;
+    }
+
     private IEnumerator KnockbackRoutine()
     {
         isKnocked = true;
