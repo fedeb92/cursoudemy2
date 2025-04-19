@@ -20855,6 +20855,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3620078411084251056, guid: 0da0085d1dea9e947a1b88297d757135, type: 3}
+      propertyPath: doubleJumpForce
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620078411084251056, guid: 0da0085d1dea9e947a1b88297d757135, type: 3}
+      propertyPath: knockbackDuration
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620078411084251056, guid: 0da0085d1dea9e947a1b88297d757135, type: 3}
+      propertyPath: wallCheckDistance
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20928,6 +20940,14 @@ PrefabInstance:
     - target: {fileID: 4312951921835299376, guid: 9fb4dff162c12af4f91b1ec2381043a1, type: 3}
       propertyPath: m_Name
       value: Trap_FallingPlatafform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102335165301606015, guid: 9fb4dff162c12af4f91b1ec2381043a1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671075044669016973, guid: 9fb4dff162c12af4f91b1ec2381043a1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7602325023643866869, guid: 9fb4dff162c12af4f91b1ec2381043a1, type: 3}
       propertyPath: m_LocalPosition.x

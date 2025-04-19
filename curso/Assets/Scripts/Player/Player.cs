@@ -263,6 +263,7 @@ public class Player : MonoBehaviour
         canDoubleJump = true;   
         rb.linearVelocity = new Vector2(wallJumpForce.x * -facingDir,wallJumpForce.y);
         Flip();
+
         StopAllCoroutines();
         StartCoroutine(WallJumpRoutine());
     }
